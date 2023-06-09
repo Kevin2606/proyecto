@@ -1,15 +1,15 @@
 <?php
 $acciones = [
-    "Enviar" => function () {
+    "✅" => function () {
         enviarDatos();
     },
-    "Editar" => function () {
+    "📝" => function () {
         editarDatos();
     },
-    "Eliminar" => function () {
+    "❌" => function () {
         eliminarDatos();
     },
-    "Buscar" => function ($cedula) {
+    "🔍" => function ($cedula) {
         buscarDatos($cedula);
     }
 ];
@@ -158,10 +158,10 @@ if (isset($_POST['acciones'])) {
                 <input type='text' name='edad' id='edad' placeholder='Edad' value="<?php echo $GLOBALS["recoveryData"]['edad'] ?>">
                 <input type='email' name='email' id='email' placeholder='usuario@correo.com' value="<?php echo $GLOBALS["recoveryData"]['email'] ?>">
                 <div id="acciones">
-                    <input type="submit" name="acciones" value="Enviar">
-                    <input type="submit" name="acciones" value="Editar">
-                    <input type="submit" name="acciones" value="Eliminar">
-                    <input type="submit" name="acciones" value="Buscar">
+                    <input type="submit" name="acciones" value="✅">
+                    <input type="submit" name="acciones" value="📝">
+                    <input type="submit" name="acciones" value="❌">
+                    <input type="submit" name="acciones" value="🔍">
                     <input type='number' name='cedula' id='cedula' placeholder='Cedula' value="<?php echo $GLOBALS["recoveryData"]['cedula'] ?>">
                 </div>
             </div>
