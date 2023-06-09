@@ -99,15 +99,20 @@ function buscarDatos($cedula)
     $_SESSION["edad"] = $data[0]["edad"];
     $_SESSION["email"] = $data[0]["email"];
     $_SESSION["cedula"] = $data[0]["cedula"];
-    global $cedulaGlobal;
-    $cedulaGlobal = $data[0]["cedula"];
 }
 session_start();
 if (isset($_POST['acciones'])) {
-    $acciones[$_POST['acciones']]($_POST['cedula']);
-    session_unset();
-    header("Location: index.php");
-    exit();
+    if ($_POST['acciones'] == "🔍") {
+        buscarDatos($_POST['cedula']);
+        header("Location: index.php");
+        exit();
+    }
+    else {
+        $acciones[$_POST['acciones']]($_POST['cedula']);
+        session_unset();
+        header("Location: index.php");
+        exit();
+    }
 
 } elseif (isset($_POST['seleccionar'])) {
     buscarDatos($_POST['seleccionado']);
@@ -135,7 +140,7 @@ if (isset($_POST['acciones'])) {
                 <?php
                     global $recoveryData;
                     $recoveryData = [
-                        "nombre" => isset($_SESSION["nombre"]) ? htmlspecialchars($_SESSION["nombre"]): '',
+                        "nombre" => isset($_SESSION["nombre"]) ? $_SESSION["nombre"]: '',
                         "apellido" => isset($_SESSION["apellido"]) ? $_SESSION["apellido"] : '',
                         "direccion" => isset($_SESSION["direccion"]) ? $_SESSION["direccion"] : '',
                         "horario" =>isset( $_SESSION["horario"]) ? $_SESSION["horario"] : '',
